@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DX Earning Point</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#0f172a;
+      color:#fff;
+      text-align:center;
+      padding:20px;
+    }
+    .box{
+      max-width:400px;
+      margin:auto;
+      background:#111827;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 0 20px rgba(0,0,0,.5);
+    }
+    button{
+      background:#22c55e;
+      color:#000;
+      border:none;
+      padding:12px 20px;
+      border-radius:8px;
+      font-size:16px;
+      cursor:pointer;
+      margin-top:15px;
+    }
+    button:hover{
+      background:#16a34a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>🎁 DX Earning Point</h2>
+    <p id="user">Loading user...</p>
+    <p id="points">Points: 0</p>
+    <button onclick="claim()">Claim Reward</button>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    let points = 0;
+
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+      document.getElementById("user").innerText =
+        "👤 User: " + tg.initDataUnsafe.user.first_name;
+    } else {
+      document.getElementById("user").innerText =
+        "👤 Open inside Telegram";
+    }
+
+    function claim(){
+      points += 10;
+      document.getElementById("points").innerText =
+        "Points: " + points;
+      alert("✅ You earned 10 points (demo)");
+    }
+  </script>
+</body>
+</html>
