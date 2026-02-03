@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DX Earning Point</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body style="font-family: sans-serif; text-align:center;">
+
+  <h2>🎁 DX Earning Point</h2>
+  <p id="user">Loading...</p>
+
+  <button onclick="claim()" style="padding:10px 20px;font-size:16px;">
+    Claim Reward
+  </button>
+
+  <script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+
+    let user = tg.initDataUnsafe.user;
+    if (user) {
+      document.getElementById("user").innerText =
+        "Welcome, " + user.first_name;
+    }
+
+    function claim() {
+      alert("Great 👍 পরের ধাপে Ads + Firebase যুক্ত করবো");
+    }
+  </script>
+
+</body>
+</html>
