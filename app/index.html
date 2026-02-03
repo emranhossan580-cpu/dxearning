@@ -4,30 +4,65 @@
   <meta charset="UTF-8">
   <title>DX Earning Point</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #38bdf8;
+    }
+    button {
+      background: #22c55e;
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .box {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align:center;">
 
-  <h2>🎁 DX Earning Point</h2>
-  <p id="user">Loading...</p>
+<body>
+  <h1>DX Earning Point</h1>
 
-  <button onclick="claim()" style="padding:10px 20px;font-size:16px;">
-    Claim Reward
-  </button>
+  <div class="box">
+    👤 User: <span id="user">Loading...</span>
+  </div>
+
+  <div class="box">
+    💰 Balance: <span id="balance">0</span> Points
+  </div>
+
+  <button onclick="claim()">🎁 Claim Reward</button>
 
   <script>
-    let tg = window.Telegram.WebApp;
-    tg.expand();
+    const tg = window.Telegram.WebApp;
+    tg.ready();
 
-    let user = tg.initDataUnsafe.user;
-    if (user) {
+    let balance = 0;
+
+    if (tg.initDataUnsafe.user) {
       document.getElementById("user").innerText =
-        "Welcome, " + user.first_name;
+        tg.initDataUnsafe.user.first_name;
+    } else {
+      document.getElementById("user").innerText = "Guest";
     }
 
     function claim() {
-      alert("Great 👍 পরের ধাপে Ads + Firebase যুক্ত করবো");
+      balance += 10;
+      document.getElementById("balance").innerText = balance;
+      alert("✅ You earned 10 points (Demo)");
     }
   </script>
-
 </body>
 </html>
